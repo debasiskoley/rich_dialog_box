@@ -14,12 +14,13 @@ class RichDialogBox extends StatefulWidget {
     @required this.content,
     this.padding,
     this.borderRadius,
-    @required this.actions,
     this.isClose = false,
     this.onPressClose,
     this.shape,
     this.elevation,
     this.backGroundColor = Colors.white,
+    this.actions
+
   }) : super(key: key);
 
   final String title;
@@ -32,12 +33,12 @@ class RichDialogBox extends StatefulWidget {
   final EdgeInsetsGeometry titlePadding;
   final EdgeInsetsGeometry padding;
   final BorderRadius borderRadius;
-  final List<Widget> actions;
   final bool isClose;
   final Function onPressClose;
   final ShapeBorder shape;
   final double elevation;
   final Color backGroundColor;
+  final List<ActionButton> actions;
 
   @override
   _RichDialogBoxState createState() => _RichDialogBoxState();
@@ -75,11 +76,7 @@ class _RichDialogBoxState extends State<RichDialogBox> {
                     : const SizedBox(height: 0),
                 widget.content ??
                     const SizedBox(height: 0),
-                (widget.actions != null)
-                    ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: widget.actions)
-                    : const SizedBox(height: 10),
+               _showActions(),
               ],
             ),
             widget.isClose
@@ -108,6 +105,83 @@ class _RichDialogBoxState extends State<RichDialogBox> {
           RoundedRectangleBorder(
               borderRadius: widget.borderRadius ?? BorderRadius.circular(20.0)),
       child: dialogChild,
+    );
+  }
+
+  Widget _showActions(){
+    return  ( widget.actions != null && widget.actions.length == 2 )
+        ? Row (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                widget.actions[0],
+                widget.actions[1]
+              ]
+          )
+        : ( widget.actions != null && widget.actions.length == 1 )
+        ? Row (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                widget.actions[0]
+              ]
+          )
+        : const SizedBox(height: 10);
+  }
+
+}
+
+
+class ActionButton extends StatelessWidget {
+
+  const ActionButton({
+    Key key,
+    @required
+    this.buttonText,
+    @required
+    this.onPressed,
+    this.isPositive,
+    this.padding = const EdgeInsets.symmetric(vertical: 20.0),
+    this.buttonColor = Colors.white,
+    this.buttonTextStyle = const TextStyle (color: Colors.black, fontSize: 15.0),
+  }) : super(key: key);
+
+  final bool isPositive;
+  final Color buttonColor;
+  final EdgeInsets padding;
+  final String buttonText;
+  final TextStyle buttonTextStyle;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: RaisedButton(
+        color: Colors.white,
+        padding: padding,
+        shape: isPositive == null
+            ? RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+          ),
+        )
+            : isPositive
+            ? RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0),
+          ),
+        )
+            : RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+          ),
+        ) ,
+        onPressed:() => onPressed(),
+        child:  Text(
+          '$buttonText',
+          style: buttonTextStyle,
+        ),
+      ),
     );
   }
 }
