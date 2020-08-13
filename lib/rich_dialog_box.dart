@@ -9,8 +9,7 @@ class RichDialogBox extends StatefulWidget {
     this.titleFamily = '',
     this.titleColor = Colors.black,
     this.titlePadding = const EdgeInsets.all(20),
-    this.isForm = false,
-    this.form = const Text('Form field is not present.'),
+    this.form,
     @required this.content,
     this.padding,
     this.borderRadius,
@@ -27,7 +26,6 @@ class RichDialogBox extends StatefulWidget {
   final double titleSize;
   final String titleFamily;
   final Color titleColor;
-  final bool isForm;
   final Widget form;
   final Widget content;
   final EdgeInsetsGeometry titlePadding;
@@ -71,12 +69,11 @@ class _RichDialogBoxState extends State<RichDialogBox> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                widget.isForm
-                    ? widget.form
-                    : const SizedBox(height: 0),
-                widget.content ??
-                    const SizedBox(height: 0),
-               _showActions(),
+                widget.content ?? const SizedBox(height: 0),
+                SizedBox(height: 10),
+                widget.form ?? const SizedBox(height: 0),
+                SizedBox(height: 10),
+                _buildActionsWidget(),
               ],
             ),
             widget.isClose
@@ -84,8 +81,7 @@ class _RichDialogBoxState extends State<RichDialogBox> {
               top: 10,
               right: 10,
               child: IconButton(
-                onPressed: () =>
-                widget.onPressClose ?? Navigator.pop(context),
+                onPressed: () =>  widget.onPressClose != null ? widget.onPressClose() : Navigator.pop(context),
                 icon: Icon(
                   Icons.close,
                   size: 25,
@@ -108,16 +104,22 @@ class _RichDialogBoxState extends State<RichDialogBox> {
     );
   }
 
-  Widget _showActions(){
-    return  ( widget.actions != null && widget.actions.length == 2 )
+  Widget _buildActionsWidget(){
+    return  ( widget.actions != null
+        && widget.actions.length == 2
+        && widget.actions[0].isPositive !=null
+        && widget.actions[1].isPositive !=null)
         ? Row (
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                widget.actions[0],
-                widget.actions[1]
+                ( widget.actions[0].isPositive && !widget.actions[1].isPositive)
+                ? widget.actions[0] : const SizedBox(height: 10),
+
+                (widget.actions[0].isPositive && !widget.actions[1].isPositive)
+                ? widget.actions[1] : const SizedBox(height: 10),
               ]
           )
-        : ( widget.actions != null && widget.actions.length == 1 )
+        : ( widget.actions != null && widget.actions.length == 1  && widget.actions[0].isPositive == null)
         ? Row (
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
