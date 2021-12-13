@@ -44,19 +44,19 @@ class _RichDialogViewState extends State<RichDialogView> {
     return ListView(
       padding: const EdgeInsets.all(20.0),
       children: <Widget>[
-        RaisedButton(
+        MaterialButton(
           onPressed:()=> _buildSimpleAlertBox(),
           child: Text('Simple Dialog box'),
         ),
-        RaisedButton(
+        MaterialButton(
           onPressed:()=> _buildAlertWithCornerCrossButton(),
           child: Text('Dialog box with close IconButton at Corner'),
         ),
-        RaisedButton(
+        MaterialButton(
           onPressed:()=> _buildMultiActionAlertBox(),
           child: Text('Multi Action Dialog box'),
         ),
-        RaisedButton(
+        MaterialButton(
           onPressed:()=> _buildAlertWithTextField(),
           child: Text('Dialog box With TextField'),
         )
@@ -78,7 +78,7 @@ class _RichDialogViewState extends State<RichDialogView> {
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                'Two button with description.',
+                'Simple Dialog with one button.',
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 15,
@@ -114,7 +114,7 @@ class _RichDialogViewState extends State<RichDialogView> {
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                'Two button with description.',
+                'Simple Dialog with top cancel button',
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 15,
@@ -188,7 +188,7 @@ class _RichDialogViewState extends State<RichDialogView> {
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                'Two button with description.',
+                'Two button with input option.',
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 15,

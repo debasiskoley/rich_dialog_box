@@ -1,6 +1,6 @@
 # rich_dialog_box
 
-A new Flutter package.
+A Custom Dialog box Flutter package.
 
 ## Getting Started
 
