@@ -46,19 +46,19 @@ class _RichDialogViewState extends State<RichDialogView> {
       children: <Widget>[
         MaterialButton(
           onPressed:()=> _buildSimpleAlertBox(),
-          child: Text('Simple Dialog box'),
+          child: const Text('Simple Dialog box'),
         ),
         MaterialButton(
           onPressed:()=> _buildAlertWithCornerCrossButton(),
-          child: Text('Dialog box with close IconButton at Corner'),
+          child: const Text('Dialog box with close IconButton at Corner'),
         ),
         MaterialButton(
           onPressed:()=> _buildMultiActionAlertBox(),
-          child: Text('Multi Action Dialog box'),
+          child: const Text('Multi Action Dialog box'),
         ),
         MaterialButton(
           onPressed:()=> _buildAlertWithTextField(),
-          child: Text('Dialog box With TextField'),
+          child: const Text('Dialog box With TextField'),
         )
       ],
     );
@@ -74,7 +74,7 @@ class _RichDialogViewState extends State<RichDialogView> {
           title: 'Rich Dialog',
           titleSize: 20,
           titlePadding: const EdgeInsets.all(10.0),
-          content: Center(
+          content: const Center(
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
@@ -91,7 +91,6 @@ class _RichDialogViewState extends State<RichDialogView> {
             ActionButton(
               buttonText: 'OK',
               onPressed: () {
-                print('pressed');
                 Navigator.pop(context);
               },
             )
@@ -106,10 +105,10 @@ class _RichDialogViewState extends State<RichDialogView> {
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
-        return RichDialogBox(
+        return const RichDialogBox(
           title: 'Rich Dialog',
           titleSize: 20,
-          titlePadding: const EdgeInsets.all(20.0),
+          titlePadding: EdgeInsets.all(20.0),
           content: Center(
             child: Padding(
               padding: EdgeInsets.all(20.0),
@@ -138,7 +137,7 @@ class _RichDialogViewState extends State<RichDialogView> {
           title: 'Rich Dialog',
           titleSize: 20,
           titlePadding: const EdgeInsets.all(10.0),
-          content: Center(
+          content: const Center(
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
@@ -156,7 +155,6 @@ class _RichDialogViewState extends State<RichDialogView> {
               buttonText: 'OK',
               isPositive: true,
               onPressed: () {
-                print('pressed');
                 Navigator.pop(context);
               },
             ),
@@ -164,7 +162,6 @@ class _RichDialogViewState extends State<RichDialogView> {
               buttonText: 'Cancel',
               isPositive: false,
               onPressed: () {
-                print('pressed');
                 Navigator.pop(context);
               },
             )
@@ -184,7 +181,7 @@ class _RichDialogViewState extends State<RichDialogView> {
           title: 'Rich Dialog',
           titleSize: 20,
           titlePadding: const EdgeInsets.all(10.0),
-          content: Center(
+          content: const Center(
             child: Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
@@ -201,7 +198,7 @@ class _RichDialogViewState extends State<RichDialogView> {
             padding: const EdgeInsets.all(20.0),
             child: TextFormField(
                 controller: _textController,
-                 decoration: InputDecoration(
+                 decoration: const InputDecoration(
                    labelText: 'Text Field'
                  ),
               ),
@@ -210,7 +207,6 @@ class _RichDialogViewState extends State<RichDialogView> {
             ActionButton(
               buttonText: 'Submit',
               onPressed: () {
-                print('pressed');
                 _textController?.clear();
                 Navigator.pop(context);
               },

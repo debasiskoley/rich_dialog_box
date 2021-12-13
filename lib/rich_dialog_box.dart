@@ -70,9 +70,9 @@ class _RichDialogBoxState extends State<RichDialogBox> {
                   ),
                 ),
                 widget.content ?? const SizedBox(height: 0),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 widget.form ?? const SizedBox(height: 0),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildActionsWidget(),
               ],
             ),
@@ -82,7 +82,7 @@ class _RichDialogBoxState extends State<RichDialogBox> {
               right: 10,
               child: IconButton(
                 onPressed: () =>  widget.onPressClose != null ? widget.onPressClose() : Navigator.pop(context),
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   size: 25,
                 ),
@@ -157,30 +157,30 @@ class ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: RaisedButton(
+      child: MaterialButton(
         color: Colors.white,
         padding: padding,
         shape: isPositive == null
-            ? RoundedRectangleBorder(
+            ? const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20.0),
             bottomRight: Radius.circular(20.0),
           ),
         )
             : isPositive
-            ? RoundedRectangleBorder(
+            ? const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20.0),
           ),
         )
-            : RoundedRectangleBorder(
+            : const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(20.0),
           ),
         ) ,
         onPressed:() => onPressed(),
         child:  Text(
-          '$buttonText',
+          buttonText,
           style: buttonTextStyle,
         ),
       ),
